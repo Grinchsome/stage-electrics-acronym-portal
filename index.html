@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A personal acronym learning portal for theatre, events, electrical, rigging, compliance, lighting and building-services terms." />
+    <title>Stage Electrics Acronym Learning Portal</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Stage Electrics</p>
+          <h1>Acronym Learning Portal</h1>
+          <p class="hero-text">A public-safe personal glossary for learning common technical, electrical, lighting, lifting, compliance and building-services abbreviations.</p>
+        </div>
+        <div class="hero-card">
+          <span>Learning focus</span>
+          <strong>Search · Learn · Test · Add</strong>
+          <p>No confidential project, customer, pricing or internal process information should be added.</p>
+        </div>
+      </header>
+
+      <main class="layout">
+        <section class="panel glossary-panel" aria-labelledby="glossary-heading">
+          <div class="section-heading">
+            <div>
+              <h2 id="glossary-heading">Glossary</h2>
+              <p>Search an acronym or browse by category.</p>
+            </div>
+            <label class="search-box">
+              <span class="visually-hidden">Search acronyms</span>
+              <input id="searchInput" type="search" placeholder="Search RCD, EICR, LOLER, HVAC..." autocomplete="off" />
+            </label>
+          </div>
+          <div id="categoryFilters" class="filter-row" aria-label="Category filters"></div>
+          <div id="glossaryGrid" class="glossary-grid"></div>
+        </section>
+
+        <aside class="side-column">
+          <section class="panel detail-panel" aria-labelledby="selected-heading">
+            <p class="eyebrow dark">Selected term</p>
+            <h2 id="selectedAcronym">RCD</h2>
+            <h3 id="selectedTerm">Residual Current Device</h3>
+            <p id="selectedPlainEnglish"></p>
+            <div class="note-block">
+              <strong>Stage / work context</strong>
+              <p id="selectedContext"></p>
+            </div>
+            <div class="note-block light">
+              <strong>Example</strong>
+              <p id="selectedExample"></p>
+            </div>
+            <div class="memory-block">
+              <strong>Memory hook</strong>
+              <p id="selectedRemember"></p>
+            </div>
+          </section>
+
+          <section class="panel quiz-panel" aria-labelledby="quiz-heading">
+            <div class="section-heading compact">
+              <div>
+                <h2 id="quiz-heading">Quick self-test</h2>
+                <p>Check whether the meaning has stuck.</p>
+              </div>
+            </div>
+            <div class="quiz-card">
+              <span>What does this stand for?</span>
+              <strong id="quizAcronym">RCD</strong>
+              <div id="quizAnswer" class="quiz-answer hidden"></div>
+            </div>
+            <div class="button-row">
+              <button id="showAnswerBtn" class="primary-button" type="button">Show answer</button>
+              <button id="nextQuizBtn" class="secondary-button" type="button">Next</button>
+            </div>
+          </section>
+
+          <section class="panel add-panel" aria-labelledby="add-heading">
+            <div class="section-heading compact">
+              <div>
+                <h2 id="add-heading">Add an acronym</h2>
+                <p>Saved in this browser only. To make it permanent on GitHub, add it to <code>data/acronyms.js</code>.</p>
+              </div>
+            </div>
+            <form id="addForm" class="add-form">
+              <label>Acronym <input name="acronym" required placeholder="e.g. HVAC" /></label>
+              <label>Full term <input name="term" required placeholder="Heating, Ventilation and Air Conditioning" /></label>
+              <label>Category <input name="category" required placeholder="Building Services" /></label>
+              <label>Short meaning <textarea name="short" required rows="2" placeholder="One-sentence meaning"></textarea></label>
+              <label>Plain-English explanation <textarea name="plainEnglish" required rows="3"></textarea></label>
+              <label>Stage / work context <textarea name="stageContext" rows="3"></textarea></label>
+              <label>Example <textarea name="example" rows="2"></textarea></label>
+              <label>Memory hook <input name="remember" placeholder="HVAC = controls air and temperature" /></label>
+              <button class="primary-button wide" type="submit">Save locally</button>
+            </form>
+            <div class="button-row wrap">
+              <button id="exportBtn" class="secondary-button" type="button">Export my additions</button>
+              <label class="secondary-button file-button">Import additions<input id="importInput" type="file" accept="application/json" /></label>
+              <button id="clearLocalBtn" class="danger-button" type="button">Clear local additions</button>
+            </div>
+            <p id="saveMessage" class="save-message" role="status"></p>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script src="data/acronyms.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

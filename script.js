@@ -67,12 +67,47 @@ function getCategories() {
 
 function getFilteredAcronyms() {
   const query = elements.searchInput.value.trim().toLowerCase();
-  return getAllAcronyms().filter((item) => {
-    const matchesCategory = activeCategory === "All" || item.category === activeCategory;
-    const haystack = [item.acronym, item.term, item.category, item.short, item.plainEnglish, item.stageContext, item.example, item.remember]
+
+  const categoryMatches = getAllAcronyms().filter((item) => {
+    return activeCategory === "All" || item.category === activeCategory;
+  });
+
+  if (!query) {
+    return categoryMatches;
+  }
+
+  const exactAcronymMatches = categoryMatches.filter((item) => {
+    return item.acronym.toLowerCase() === query;
+  });
+
+  if (exactAcronymMatches.length > 0) {
+    return exactAcronymMatches;
+  }
+
+  const acronymStartsWithMatches = categoryMatches.filter((item) => {
+    return item.acronym.toLowerCase().startsWith(query);
+  });
+
+  if (acronymStartsWithMatches.length > 0) {
+    return acronymStartsWithMatches;
+  }
+
+  return categoryMatches.filter((item) => {
+    const words = [
+      item.acronym,
+      item.term,
+      item.category,
+      item.short,
+      item.plainEnglish,
+      item.stageContext,
+      item.example,
+      item.remember,
+    ]
       .join(" ")
-      .toLowerCase();
-    return matchesCategory && haystack.includes(query);
+      .toLowerCase()
+      .split(/[^a-z0-9/]+/);
+
+    return words.some((word) => word.startsWith(query));
   });
 }
 

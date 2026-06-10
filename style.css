@@ -186,9 +186,19 @@ h1 {
   background: white;
   border: 1px solid var(--line);
   border-radius: 24px;
-  padding: 20px;
+  padding: 0;
   min-height: 190px;
+  overflow: hidden;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.term-card-summary {
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 0;
+  padding: 20px;
+  color: inherit;
 }
 
 .term-card:hover, .term-card.active {
@@ -208,6 +218,17 @@ h1 {
 .term-card .term { font-weight: 800; color: #334155; }
 .term-card .short { color: var(--muted); line-height: 1.55; font-size: 0.95rem; margin: 14px 0; }
 .term-card .category { display: inline-block; background: var(--soft); color: #475569; border-radius: 999px; padding: 6px 10px; font-size: 0.78rem; font-weight: 800; }
+
+.inline-detail {
+  border-top: 1px solid var(--line);
+  padding: 0 20px 20px;
+}
+
+.inline-detail > p {
+  color: #475569;
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
 
 .empty-state {
   border: 1px dashed #cbd5e1;
@@ -366,4 +387,11 @@ code {
   .hero, .panel { border-radius: 22px; padding: 18px; }
   .glossary-grid { grid-template-columns: 1fr; }
   .detail-panel h2 { font-size: 3rem; }
+    .side-column .detail-panel {
+    display: none;
+  }
+
+  .term-card.expanded {
+    box-shadow: 0 18px 38px rgba(15, 23, 42, 0.12);
+  }
 }

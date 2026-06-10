@@ -228,7 +228,7 @@ window.DEFAULT_ACRONYMS = [
     "stageContext": "Common on installations, events, warehouse activities, site work, and jobs involving lifting, working at height, power, or public areas.",
     "example": "Before installing truss or running temporary power, RAMS may explain who is responsible and what controls must be in place.",
     "remember": "RAMS = risks plus safe working method."
-  }
+  },
   {
   acronym: "PSU",
   term: "Power Supply Unit",
@@ -255,7 +255,7 @@ window.DEFAULT_ACRONYMS = [
     "A project may have HSEQ requirements covering safe working methods, environmental controls, documentation, and quality checks.",
   remember: "HSEQ = safety, environment, and quality all managed together.",
 },
-     {
+{
   acronym: "EWL",
   term: "Effective Working Length",
   category: "Lifting & Rigging",

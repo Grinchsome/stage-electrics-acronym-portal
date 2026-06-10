@@ -128,6 +128,8 @@ function renderCategories() {
 
 function renderGlossary() {
   const acronyms = getFilteredAcronyms();
+  const query = elements.searchInput.value.trim().toLowerCase();
+
   elements.glossaryGrid.innerHTML = "";
 
   if (acronyms.length === 0) {
@@ -138,25 +140,58 @@ function renderGlossary() {
     return;
   }
 
-  if (!selectedAcronym || !getAllAcronyms().some((item) => item.acronym === selectedAcronym)) {
+  const selectedIsVisible = acronyms.some((item) => item.acronym === selectedAcronym);
+
+  if (!selectedAcronym || !selectedIsVisible || query) {
     selectedAcronym = acronyms[0].acronym;
   }
 
   acronyms.forEach((item) => {
-    const card = document.createElement("button");
-    card.type = "button";
-    card.className = `term-card ${item.acronym === selectedAcronym ? "active" : ""}`;
+    const isSelected = item.acronym === selectedAcronym;
+
+    const card = document.createElement("article");
+    card.className = `term-card ${isSelected ? "active expanded" : ""}`;
+
     card.innerHTML = `
-      <strong>${escapeHtml(item.acronym)}</strong>
-      <div class="term">${escapeHtml(item.term)}</div>
-      <p class="short">${escapeHtml(item.short)}</p>
-      <span class="category">${escapeHtml(item.category)}</span>
+      <button class="term-card-summary" type="button">
+        <strong>${escapeHtml(item.acronym)}</strong>
+        <div class="term">${escapeHtml(item.term)}</div>
+        <p class="short">${escapeHtml(item.short)}</p>
+        <span class="category">${escapeHtml(item.category)}</span>
+      </button>
+
+      ${
+        isSelected
+          ? `
+            <div class="inline-detail">
+              <p>${escapeHtml(item.plainEnglish || item.short)}</p>
+
+              <div class="note-block">
+                <strong>Stage / work context</strong>
+                <p>${escapeHtml(item.stageContext || "No specific context added yet.")}</p>
+              </div>
+
+              <div class="note-block light">
+                <strong>Example</strong>
+                <p>${escapeHtml(item.example || "No example added yet.")}</p>
+              </div>
+
+              <div class="memory-block">
+                <strong>Memory hook</strong>
+                <p>${escapeHtml(item.remember || `${item.acronym} = ${item.term}`)}</p>
+              </div>
+            </div>
+          `
+          : ""
+      }
     `;
-    card.addEventListener("click", () => {
+
+    card.querySelector(".term-card-summary").addEventListener("click", () => {
       selectedAcronym = item.acronym;
       renderSelected();
       renderGlossary();
     });
+
     elements.glossaryGrid.appendChild(card);
   });
 }

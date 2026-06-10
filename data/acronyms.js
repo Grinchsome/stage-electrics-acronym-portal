@@ -634,5 +634,5 @@ window.DEFAULT_ACRONYMS = [
   example:
     "An elevator might have one load limit for moving a load and a different, possibly higher, ELL/R when the platform is locked in position and only sustaining the load at rest.",
   remember: "ELL/R = the entertainment load limit when the equipment is stationary.",
-},  
+}  
 ];

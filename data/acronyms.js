@@ -258,7 +258,7 @@ window.DEFAULT_ACRONYMS = [
     "When choosing a round sling, the EWL helps you understand whether the sling will be long enough to safely connect between the load and the lifting point.",
   remember: "EWL = the effective usable length of the sling or lifting equipment.",
 },
-  {
+{
   acronym: "FOS",
   term: "Factor of Safety",
   category: "Lifting & Rigging",
@@ -609,7 +609,7 @@ window.DEFAULT_ACRONYMS = [
     "A risk assessment for a job or site visit is part of managing health and safety properly.",
   remember: "MHSAWR = managing workplace health and safety.",
 },
-  {
+{
   acronym: "ELL",
   term: "Entertainment Load Limit",
   category: "Lifting & Rigging",
@@ -622,7 +622,7 @@ window.DEFAULT_ACRONYMS = [
     "If a piece of stage lifting equipment has an ELL of 500 kg, that is the maximum entertainment load it is designed to raise, lower, or sustain during normal operation.",
   remember: "ELL = the entertainment load limit while the equipment is working.",
 },
-  {
+{
   acronym: "ELL/R",
   term: "Entertainment Load Limit at Rest",
   category: "Lifting & Rigging",

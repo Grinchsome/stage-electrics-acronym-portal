@@ -229,4 +229,43 @@ window.DEFAULT_ACRONYMS = [
     "example": "Before installing truss or running temporary power, RAMS may explain who is responsible and what controls must be in place.",
     "remember": "RAMS = risks plus safe working method."
   }
+  {
+  acronym: "PSU",
+  term: "Power Supply Unit",
+  category: "Power Distribution",
+  short: "A device or unit that supplies electrical power to equipment.",
+  plainEnglish:
+    "A PSU takes an incoming electrical supply and provides the correct type of power needed by a piece of equipment. In many cases it converts mains AC power into lower-voltage DC power used by electronics.",
+  stageContext:
+    "You may hear PSU mentioned around lighting fixtures, LED tape, control equipment, computers, racks, processors, networking equipment, and other powered devices.",
+  example:
+    "An LED tape installation may need a suitable PSU to convert mains power into the low-voltage DC supply required by the tape.",
+  remember: "PSU = the box or unit that supplies power to equipment.",
+},
+{
+  acronym: "HSEQ",
+  term: "Health, Safety, Environment and Quality",
+  category: "Health & Safety",
+  short: "A combined term for safety, environmental responsibility, and quality standards.",
+  plainEnglish:
+    "HSEQ is used to describe the way an organisation manages health and safety, environmental impact, and quality of work. It brings together safe working, compliance, good practice, and doing the job properly.",
+  stageContext:
+    "You may hear HSEQ mentioned around policies, audits, RAMS, site requirements, training, incident reporting, compliance, and company standards.",
+  example:
+    "A project may have HSEQ requirements covering safe working methods, environmental controls, documentation, and quality checks.",
+  remember: "HSEQ = safety, environment, and quality all managed together.",
+},
+     {
+  acronym: "EWL",
+  term: "Effective Working Length",
+  category: "Lifting & Rigging",
+  short: "The usable length of lifting equipment that is directly engaged with the load.",
+  plainEnglish:
+    "EWL means Effective Working Length. It refers to the part of the lifting equipment that is actually working with, or engaged with, the object being lifted. For a round sling, the EWL is measured as the internal length when the sling is laid flat and fully extended.",
+  stageContext:
+    "You may see EWL on sling information, lifting equipment specifications, rigging documents, certificates, or product descriptions. It helps confirm that the lifting equipment is the correct length for the lifting operation.",
+  example:
+    "When choosing a round sling, the EWL helps you understand whether the sling will be long enough to safely connect between the load and the lifting point.",
+  remember: "EWL = the effective usable length of the sling or lifting equipment.",
+},
 ];

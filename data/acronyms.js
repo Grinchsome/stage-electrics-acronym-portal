@@ -130,16 +130,6 @@ window.DEFAULT_ACRONYMS = [
     "remember": "ABTT = British theatre technicians' association."
   },
   {
-    "acronym": "ELL",
-    "term": "Needs confirmation",
-    "category": "To Confirm",
-    "short": "This acronym appears to be context-dependent, so it needs confirming from the document or conversation where you saw it.",
-    "plainEnglish": "ELL can mean different things in different industries. Because it appeared alongside lifting terms such as WLL and SWL, it may be a Stage Electrics-specific or supplier-specific load/label term, but I would not want you to learn the wrong meaning.",
-    "stageContext": "When you next see ELL, note the document, equipment label, or sentence around it. That context will make it much easier to define accurately.",
-    "example": "If ELL appears on a lifting record, test certificate, drawing, or equipment label, the nearby wording should reveal whether it relates to load, length, location, emergency lighting, or something else.",
-    "remember": "ELL = check the context before learning it as fixed."
-  },
-  {
     "acronym": "WLL",
     "term": "Working Load Limit",
     "category": "Lifting & Rigging",

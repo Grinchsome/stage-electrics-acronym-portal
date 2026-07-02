@@ -20,6 +20,19 @@ window.DEFAULT_ACRONYMS = [
     "remember": "MCB = protects cables and circuits from overcurrent."
   },
   {
+  acronym: "RFID",
+  term: "Radio Frequency Identification",
+  category: "Tracking & Identification",
+  short: "A way of identifying or tracking items using radio tags and readers.",
+  plainEnglish:
+    "RFID uses a small tag and a reader. The reader detects the tag using radio signals, allowing equipment, stock, cards, or assets to be identified without needing a visible barcode.",
+  stageContext:
+    "You may hear RFID mentioned around stock control, asset tracking, access cards, warehouse systems, hire equipment, or automated identification.",
+  example:
+    "An RFID tag on a piece of equipment could help identify it when it passes near a reader.",
+  remember: "RFID = radio-based identification tag.",
+},
+  {
     "acronym": "RCBO",
     "term": "Residual Current Breaker with Overcurrent protection",
     "category": "Electrical Safety",

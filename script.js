@@ -8,6 +8,7 @@ let quizAnswerVisible = false;
 
 const elements = {
   searchInput: document.querySelector("#searchInput"),
+searchResult: document.querySelector("#searchResult"),
   categoryFilters: document.querySelector("#categoryFilters"),
   glossaryGrid: document.querySelector("#glossaryGrid"),
   selectedAcronym: document.querySelector("#selectedAcronym"),
@@ -67,50 +68,71 @@ function getCategories() {
 
 function getFilteredAcronyms() {
   const query = elements.searchInput.value.trim().toLowerCase();
-
-  const categoryMatches = getAllAcronyms().filter((item) => {
-    return activeCategory === "All" || item.category === activeCategory;
-  });
-
-  if (!query) {
-    return categoryMatches;
-  }
-
-  const exactAcronymMatches = categoryMatches.filter((item) => {
-    return item.acronym.toLowerCase() === query;
-  });
-
-  if (exactAcronymMatches.length > 0) {
-    return exactAcronymMatches;
-  }
-
-  const acronymStartsWithMatches = categoryMatches.filter((item) => {
-    return item.acronym.toLowerCase().startsWith(query);
-  });
-
-  if (acronymStartsWithMatches.length > 0) {
-    return acronymStartsWithMatches;
-  }
-
-  return categoryMatches.filter((item) => {
-    const words = [
-      item.acronym,
-      item.term,
-      item.category,
-      item.short,
-      item.plainEnglish,
-      item.stageContext,
-      item.example,
-      item.remember,
-    ]
+  return getAllAcronyms().filter((item) => {
+    const matchesCategory = activeCategory === "All" || item.category === activeCategory;
+    const haystack = [item.acronym, item.term, item.category, item.short, item.plainEnglish, item.stageContext, item.example, item.remember]
       .join(" ")
-      .toLowerCase()
-      .split(/[^a-z0-9/]+/);
-
-    return words.some((word) => word.startsWith(query));
+      .toLowerCase();
+    return matchesCategory && haystack.includes(query);
   });
 }
+function renderSearchResult() {
+  const query = elements.searchInput.value.trim();
 
+  if (!elements.searchResult) {
+    return;
+  }
+
+  if (!query) {
+    elements.searchResult.innerHTML = "";
+    elements.searchResult.style.display = "none";
+    return;
+  }
+
+  const matches = getFilteredAcronyms();
+
+  if (matches.length === 0) {
+    elements.searchResult.style.display = "block";
+    elements.searchResult.innerHTML = `
+      <div class="search-result-card">
+        <strong>No matching acronym found</strong>
+        <p>No result found for "${escapeHtml(query)}".</p>
+      </div>
+    `;
+    return;
+  }
+
+  const item = matches[0];
+
+  elements.searchResult.style.display = "block";
+  elements.searchResult.innerHTML = `
+    <div class="search-result-card">
+      <strong>${escapeHtml(item.acronym)}</strong>
+      <div class="term">${escapeHtml(item.term)}</div>
+      <p class="short">${escapeHtml(item.short)}</p>
+      <span class="category">${escapeHtml(item.category)}</span>
+
+      <div class="inline-detail">
+        <p>${escapeHtml(item.plainEnglish || item.short)}</p>
+
+        <div class="note-block">
+          <strong>Stage / work context</strong>
+          <p>${escapeHtml(item.stageContext || "No specific context added yet.")}</p>
+        </div>
+
+        <div class="note-block light">
+          <strong>Example</strong>
+          <p>${escapeHtml(item.example || "No example added yet.")}</p>
+        </div>
+
+        <div class="memory-block">
+          <strong>Memory hook</strong>
+          <p>${escapeHtml(item.remember || `${item.acronym} = ${item.term}`)}</p>
+        </div>
+      </div>
+    </div>
+  `;
+}
 function renderCategories() {
   elements.categoryFilters.innerHTML = "";
   getCategories().forEach((category) => {
@@ -128,8 +150,6 @@ function renderCategories() {
 
 function renderGlossary() {
   const acronyms = getFilteredAcronyms();
-  const query = elements.searchInput.value.trim().toLowerCase();
-
   elements.glossaryGrid.innerHTML = "";
 
   if (acronyms.length === 0) {
@@ -140,58 +160,25 @@ function renderGlossary() {
     return;
   }
 
-  const selectedIsVisible = acronyms.some((item) => item.acronym === selectedAcronym);
-
-  if (!selectedAcronym || !selectedIsVisible || query) {
+  if (!selectedAcronym || !getAllAcronyms().some((item) => item.acronym === selectedAcronym)) {
     selectedAcronym = acronyms[0].acronym;
   }
 
   acronyms.forEach((item) => {
-    const isSelected = item.acronym === selectedAcronym;
-
-    const card = document.createElement("article");
-    card.className = `term-card ${isSelected ? "active expanded" : ""}`;
-
+    const card = document.createElement("button");
+    card.type = "button";
+    card.className = `term-card ${item.acronym === selectedAcronym ? "active" : ""}`;
     card.innerHTML = `
-      <button class="term-card-summary" type="button">
-        <strong>${escapeHtml(item.acronym)}</strong>
-        <div class="term">${escapeHtml(item.term)}</div>
-        <p class="short">${escapeHtml(item.short)}</p>
-        <span class="category">${escapeHtml(item.category)}</span>
-      </button>
-
-      ${
-        isSelected
-          ? `
-            <div class="inline-detail">
-              <p>${escapeHtml(item.plainEnglish || item.short)}</p>
-
-              <div class="note-block">
-                <strong>Stage / work context</strong>
-                <p>${escapeHtml(item.stageContext || "No specific context added yet.")}</p>
-              </div>
-
-              <div class="note-block light">
-                <strong>Example</strong>
-                <p>${escapeHtml(item.example || "No example added yet.")}</p>
-              </div>
-
-              <div class="memory-block">
-                <strong>Memory hook</strong>
-                <p>${escapeHtml(item.remember || `${item.acronym} = ${item.term}`)}</p>
-              </div>
-            </div>
-          `
-          : ""
-      }
+      <strong>${escapeHtml(item.acronym)}</strong>
+      <div class="term">${escapeHtml(item.term)}</div>
+      <p class="short">${escapeHtml(item.short)}</p>
+      <span class="category">${escapeHtml(item.category)}</span>
     `;
-
-    card.querySelector(".term-card-summary").addEventListener("click", () => {
+    card.addEventListener("click", () => {
       selectedAcronym = item.acronym;
       renderSelected();
       renderGlossary();
     });
-
     elements.glossaryGrid.appendChild(card);
   });
 }
@@ -225,6 +212,7 @@ function renderQuiz() {
 
 function render() {
   renderCategories();
+  renderSearchResult();
   renderGlossary();
   renderSelected();
   renderQuiz();
@@ -248,7 +236,10 @@ function showMessage(message) {
   }, 5000);
 }
 
-elements.searchInput.addEventListener("input", renderGlossary);
+elements.searchInput.addEventListener("input", () => {
+  renderSearchResult();
+  renderGlossary();
+});
 
 elements.showAnswerBtn.addEventListener("click", () => {
   quizAnswerVisible = true;

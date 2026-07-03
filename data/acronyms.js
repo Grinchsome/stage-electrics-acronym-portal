@@ -267,5 +267,44 @@ window.DEFAULT_ACRONYMS = [
     "stageContext": "Common on installations, events, warehouse activities, site work, and jobs involving lifting, working at height, power, or public areas.",
     "example": "Before installing truss or running temporary power, RAMS may explain who is responsible and what controls must be in place.",
     "remember": "RAMS = risks plus safe working method."
-  }
+  },
+  {
+  acronym: "ERP",
+  term: "Enterprise Resource Planning",
+  category: "Business Systems",
+  short: "A business system used to manage and connect core company processes.",
+  plainEnglish:
+    "ERP means Enterprise Resource Planning. It usually refers to software that helps a business manage key areas such as finance, purchasing, stock, sales, operations, HR, reporting, and planning from one connected system.",
+  stageContext:
+    "You may hear ERP mentioned around stock, purchasing, sales orders, finance, hire/sales workflows, reporting, job costing, and business systems that share information between departments.",
+  example:
+    "If stock, purchasing, sales orders, and finance information are all managed through one connected system, that system may be referred to as an ERP system.",
+  remember: "ERP = the connected system for running core business processes.",
+},
+{
+  acronym: "SPD",
+  term: "Surge Protective Device",
+  category: "Electrical Safety",
+  short: "A device that helps protect electrical equipment from voltage spikes or surges.",
+  plainEnglish:
+    "SPD means Surge Protective Device. It is designed to reduce the risk of damage from short electrical surges or voltage spikes, such as those caused by lightning activity or switching events.",
+  stageContext:
+    "You may hear SPD mentioned around distribution boards, electrical installations, sensitive electronic equipment, venues, rack rooms, control systems, data equipment, and temporary or fixed power supplies.",
+  example:
+    "A distribution board may include SPD protection to help protect connected equipment from transient voltage spikes.",
+  remember: "SPD = protection against electrical surges.",
+},
+{
+  acronym: "SLA",
+  term: "Service Level Agreement",
+  category: "Business Systems",
+  short: "An agreement that defines the expected level of service.",
+  plainEnglish:
+    "SLA means Service Level Agreement. It sets out what level of service should be provided, such as response times, responsibilities, availability, support standards, or timescales for dealing with issues.",
+  stageContext:
+    "You may hear SLA mentioned around customer support, service contracts, maintenance agreements, response times, managed services, IT support, and internal or external service expectations.",
+  example:
+    "A service contract may include an SLA stating how quickly a support request should be acknowledged or attended.",
+  remember: "SLA = agreed service expectations.",
+},
 ];
